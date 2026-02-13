@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Valentines Day Baby · 3x3 memories & dancing tulips</title>
+  <style>
+    /* ----- ROMANTIC RESET & FONTS ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(145deg, #fff1f5 0%, #ffe6ec 100%);
+      font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+      color: #592c34;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.2rem;
+    }
+
+    .page {
+      max-width: 1100px;
+      width: 100%;
+      background: rgba(255, 250, 245, 0.8);
+      backdrop-filter: blur(8px);
+      border-radius: 60px 60px 50px 50px;
+      box-shadow: 0 25px 45px rgba(170, 80, 90, 0.15);
+      padding: 2.5rem 2rem;
+      border: 2px solid rgba(255, 210, 220, 0.7);
+    }
+
+    /* ----- PAGE 1: VALENTINE QUESTION ----- */
+    h1 {
+      font-size: 3.4rem;
+      color: #b34052;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      text-shadow: 0 4px 10px #ffd9df;
+    }
+
+    .big-buttons {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin: 3rem 0 1.5rem;
+    }
+
+    .big-btn {
+      background: white;
+      border: none;
+      border-radius: 48px;
+      padding: 1.8rem 1.2rem;
+      min-width: 220px;
+      flex: 1 1 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.7rem;
+      font-size: 1.7rem;
+      font-weight: 600;
+      color: #a13447;
+      border: 4px solid #ffd2da;
+      box-shadow: 0 16px 0 #d47a8a, 0 20px 30px rgba(200, 100, 120, 0.2);
+      transition: 0.12s ease;
+      cursor: pointer;
+      background: linear-gradient(165deg, #fffbfb, #fff5f7);
+    }
+
+    .big-btn:hover {
+      transform: scale(1.02) translateY(-6px);
+      border-color: #ffb6c1;
+      background: #ffe3e8;
+      box-shadow: 0 10px 0 #c26b7a, 0 28px 30px -8px #dc8f9b;
+    }
+
+    .btn-icon {
+      font-size: 3.4rem;
+    }
+
+    /* ----- ALL PAGES TOGGLE ----- */
+    .hidden-page {
+      display: none !important;
+    }
+
+    .visible-page {
+      display: block;
+    }
+
+    /* ----- 3x3x3 MEMORIES GALLERY (IMAGE + DESCRIPTION) ----- */
+    .memory-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem 1.8rem;
+      margin: 2.8rem 0 1.5rem;
+    }
+
+    .memory-card {
+      background: white;
+      border-radius: 32px;
+      padding: 1.5rem 1rem 1.2rem;
+      box-shadow: 0 18px 0 #ca8e9a, 0 16px 28px rgba(150, 70, 80, 0.2);
+      border: 3px solid #ffc2cd;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: 0.2s;
+    }
+
+    .memory-card:hover {
+      transform: scale(1.01) translateY(-5px);
+      border-color: #ff98aa;
+    }
+
+    /* image placeholder — you will input real images here */
+    .memory-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #ffe2e8;
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.8rem;
+      color: #b34e5e;
+      border: 4px solid white;
+      outline: 4px solid #ffbdc8;
+      margin-bottom: 0.8rem;
+      object-fit: cover;    /* for when real images added */
+      background-image: linear-gradient(145deg, #ffdce2, #ffeef0);
+    }
+
+    .memory-desc {
+      font-size: 1.25rem;
+      font-weight: 550;
+      color: #4d2e33;
+      background: #fff6f7;
+      padding: 0.5rem 0.8rem;
+      border-radius: 60px;
+      width: 100%;
+      border: 2px dashed #ff99aa;
+      margin-top: 0.3rem;
+    }
+
+    /* ----- TULIPS ANIMATION (dancing / swaying) ----- */
+    .tulip-garden {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 1.2rem 2.5rem;
+      margin: 1.5rem 0 2rem;
+      padding: 1.2rem;
+      background: rgba(255, 235, 238, 0.5);
+      border-radius: 90px 90px 40px 40px;
+    }
+
+    .tulip {
+      font-size: 5.2rem;
+      display: inline-block;
+      animation: swayTulip 3.5s infinite ease-in-out;
+      transform-origin: bottom center;
+      filter: drop-shadow(0 10px 12px rgba(190, 80, 100, 0.2));
+      margin: 0 0.2rem;
+      line-height: 1;
+    }
+
+    /* different delays — dancing field effect */
+    .tulip:nth-child(2) { animation-delay: 0.6s; font-size: 5.8rem; }
+    .tulip:nth-child(3) { animation-delay: 1.2s; font-size: 4.8rem; }
+    .tulip:nth-child(4) { animation-delay: 0.2s; font-size: 5.5rem; }
+    .tulip:nth-child(5) { animation-delay: 1.7s; font-size: 5rem; }
+    .tulip:nth-child(6) { animation-delay: 0.9s; font-size: 6rem; }
+    .tulip:nth-child(7) { animation-delay: 1.4s; font-size: 5.3rem; }
+    .tulip:nth-child(8) { animation-delay: 0.3s; font-size: 5.7rem; }
+
+    @keyframes swayTulip {
+      0% { transform: rotate(0deg) translateY(0); }
+      25% { transform: rotate(8deg) translateY(-6px); }
+      50% { transform: rotate(0deg) translateY(2px); }
+      75% { transform: rotate(-7deg) translateY(-4px); }
+      100% { transform: rotate(0deg) translateY(0); }
+    }
+
+    /* video wrapper */
+    .video-wrapper {
+      width: 100%;
+      max-width: 560px;
+      margin: 1.8rem auto;
+      border-radius: 48px;
+      overflow: hidden;
+      box-shadow: 0 20px 30px #cf8d99;
+      border: 7px solid white;
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      display: block;
+      background: #ffced6;
+    }
+
+    /* love letter (long message) */
+    .love-letter {
+      background: #fff3f5;
+      padding: 2.2rem 2rem;
+      border-radius: 56px 56px 56px 16px;
+      font-size: 1.4rem;
+      line-height: 1.9;
+      white-space: pre-line;
+      font-family: 'Georgia', serif;
+      color: #452c30;
+      border-left: 18px solid #ff869b;
+      box-shadow: 0 20px 0 #b75464;
+      margin: 1.8rem 0;
+    }
+
+    .back-home {
+      margin-top: 2rem;
+      background: #ffc1cc;
+      border: 0;
+      padding: 0.9rem 2.4rem;
+      border-radius: 60px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #3e1e22;
+      border-bottom: 7px solid #b25a67;
+      cursor: pointer;
+      transition: 0.08s;
+      border: none;
+      border-bottom: 7px solid #b4626e;
+    }
+
+    .back-home:active {
+      border-bottom-width: 2px;
+      transform: translateY(5px);
+    }
+
+    h2 {
+      font-size: 2.4rem;
+      color: #b44b5a;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* responsive */
+    @media (max-width: 800px) {
+      .memory-grid { grid-template-columns: repeat(2, 1fr); }
+      h1 { font-size: 2.5rem; }
+    }
+    @media (max-width: 550px) {
+      .memory-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page" id="app">
+
+    <!-- ========== PAGE 1: WILL YOU BE MY VALENTINE? ========== -->
+    <div id="page1" class="visible-page" style="text-align: center;">
+      <h1>
+        <span style="background: #ffe9ef; padding: 0.4rem 1.2rem; border-radius: 70px;">💗</span>
+        Happy Valentines Baby
+        <span style="background: #ffe9ef; padding: 0.4rem 1.2rem; border-radius: 70px;">💗</span>
+      </h1>
+      <div style="font-size: 5rem; line-height: 1.1;">🌷🌷🌷</div>
+      <p style="font-size: 1.7rem; margin: 1.2rem 0 0.5rem; color: #a94453;">✩‧₊*:・iloveyou・:*₊‧✩</p>
+      
+      <!-- THREE BIG BUTTONS -->
+      <div class="big-buttons">
+        <button class="big-btn" id="galleryBtn">
+          <span class="btn-icon">📸🖼️</span>
+          IMAGE GALLERY
+          <span style="font-size: 1rem;">our memories together</span>
+        </button>
+        <button class="big-btn" id="songBtn">
+          <span class="btn-icon">🎵🌷</span>
+          SONG FOR YOU
+          <span style="font-size: 1rem;">special song</span>
+        </button>
+        <button class="big-btn" id="letterBtn">
+          <span class="btn-icon">💌📜</span>
+          LOVE LETTER
+          <span style="font-size: 1rem;">baka kiligin ka nyan</span>
+        </button>
+      </div>
+      <p style="margin-top: 2rem; color: #ac616e; font-size: 1.3rem;">❀ tap a button, my love ❀</p>
+    </div>
+
+    <!-- ========== PAGE 2: 3x3x3 IMAGE GALLERY (MEMORIES) ========== -->
+    <div id="page2" class="hidden-page">
+      <div style="display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;">
+        <h2>📖 OUR MEMORIES TOGETHER</h2>
+        <span style="font-size: 2rem;">💭✨</span>
+      </div>
+      <p style="font-size: 1.35rem; margin-bottom: 0.8rem; color: #8b4e58;">—— each picture holds a story ——</p>
+      
+      <!-- 3x3 grid : 9 memory cards with IMAGE placeholder & DESCRIPTION under each -->
+      <div class="memory-grid">
+  <!-- 1 -->
+  <div class="memory-card">
+    <img class="memory-img" src="images/date1.jfif" alt="our first coffee date">
+    <div class="memory-desc">admiring you from behind 😝</div>
+  </div>
+  <!-- 2 -->
+  <div class="memory-card">
+    <img class="memory-img" src="images/date2.jfif" alt="tulip field together">
+    <div class="memory-desc">sumo niku :></div>
+  </div>
+  <!-- 3 -->
+  <div class="memory-card">
+    <img class="memory-img" src="images/date3.jfif" alt="beach sunset">
+    <div class="memory-desc">jopay concert, very maputik 💙</div>
+  </div>
+  <!-- 4 -->
+  <div class="memory-card">
+    <img class="memory-img" src="images/date4.jfif" alt="spring picnic">
+    <div class="memory-desc">mugshot coffee 🍓</div>
+  </div>
+  <!-- 5 -->
+  <div class="memory-card">
+    <img class="memory-img" src="images/date5.jfif" alt="art museum date">
+    <div class="memory-desc">first time kumain sa hotpot 🤍</div>
+  </div>
+  <!-- 6 -->
+  <div class="memory-card">
+    <img class="memory-img" src="images/date6.jfif" alt="rainy walk together">
+    <div class="memory-desc">dangwa date, pero namahinga muna ☔</div>
+  </div>
+  <!-- 7 -->
+  <div class="memory-card">
+    <img class="memory-img" src="images/date7.jfif" alt="baking together">
+    <div class="memory-desc">araneta date first time mag ramen nagi 🍰</div>
+  </div>
+  <!-- 8 -->
+  <div class="memory-card">
+    <img class="memory-img" src="images/date8.jfif" alt="stargazing night">
+    <div class="memory-desc">first cinema together ✨</div>                          
+  </div>
+  <!-- 9 -->
+  <div class="memory-card">
+    <img class="memory-img" src="images/date9.jfif" alt="our anniversary">
+    <div class="memory-desc">first photobooth together 💘</div>
+  </div>
+  <div class="memory-card">
+    <img class="memory-img" src="images/date10.jfif" alt="our anniversary">
+    <div class="memory-desc">she said yes guys 💘</div>
+  </div>
+  <div class="memory-card">
+    <img class="memory-img" src="images/date11.jfif" alt="our anniversary">
+    <div class="memory-desc">christmass lighting 💘</div>
+  </div>
+  <div class="memory-card">
+    <img class="memory-img" src="images/date12.jfif" alt="our anniversary">
+    <div class="memory-desc">binondo bridge photobooth 💘</div>
+  </div>
+      <button class="back-home" id="backFromGallery">🔙 back to valentine</button>
+    </div>
+
+    </div>
+    <!-- ========== PAGE 3: SONG & TULIPS (with animation) ========== -->
+    <div id="page3" class="hidden-page">
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px;">
+        <h2>🎶 waltz of the tulips</h2>
+        <span style="font-size: 2.2rem;">🎵🌷</span>
+      </div>
+      
+      <!-- ANIMATED TULIPS – DANCING / SWAYING FIELD -->
+      <div class="tulip-garden">
+        <span class="tulip">🌷</span>
+        <span class="tulip">🌷</span>
+        <span class="tulip">🌷</span>
+        <span class="tulip">🌷</span>
+        <span class="tulip">🌷</span>
+        <span class="tulip">🌷</span>
+        <span class="tulip">🌷</span>
+        <span class="tulip">🌷</span>
+        <span class="tulip">🌷</span>
+      </div>
+      <p style="font-size: 1.6rem; margin-top: -0.5rem; color: #ad485a;">🌸 tulips sway just for you 🌸</p>
+
+      <!-- video with a song (flower / valentine vibe) -->
+   <div class="video-wrapper">
+  <iframe width="100%" height="315" 
+          src="https://www.youtube-nocookie.com/embed/DvENFPgi9rg" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          allowfullscreen
+          style="border-radius: 40px; width: 100%; max-width: 560px; height: 315px; margin: 0 auto; display: block;">
+  </iframe>
+</div>
+      
+      <p style="background: #ffe4e9; padding: 0.6rem 1.8rem; border-radius: 60px; display: inline-block; margin: 0.5rem auto; font-size: 1.45rem;">
+        💞 a song that reminds me of us 💞
+      </p>
+      <button class="back-home" id="backFromSong">🔙 back to valentine</button>
+    </div>
+
+    <!-- ========== PAGE 4: LONG MESSAGE LETTER ========== -->
+    <div id="page4" class="hidden-page">
+      <h2 style="margin-bottom: 0.5rem;">💌 Happy Valentines Day Baby</h2>
+      <div class="love-letter">
+        <p style="font-size: 1.8rem; margin-bottom: 1rem;">My Talen,</p>
+        <p>
+          Today is Valentines day and i want you to remind you that my love for you has no limits, iloveyou everyday
+          like the first day. I am grateful for all the things that you did to me. Thankyou for always being there for me.
+        </p>
+        <p>
+            Simula nung una pala di ko expect na ganto ka pala talaga ka importante na sa buhay ko, and now i never want to
+            lose you, because life i so much better when i met you. I will always choose you everyday over and over hanggang
+            sa magsawa ka HAHAHAHA.
+          
+        </p>
+        <p>
+          This Valentine’s Day, I don’t just want to ask you to be my valentine. 
+          I want to promise you all my tomorrows, i just wanna be with you for a long time, sa mga susunod na taon, sharing ups
+          and downs, and sharing happiness together. Iloveyou so much, and nandito lang ako palagi susuportahan kita sa mga pagsubok na dadaanan mo, u'll always be my favorite person that i have. 
+        </p>
+        <br>
+
+        <p style="margin-top: 1.5rem; font-size: 2rem; background: #ffe0e5; padding: 0.3rem 1.5rem; border-radius: 70px; display: inline-block;">
+          iloveyou in every universe. 💘
+        </p>
+        <p class="letter-signature" style="margin-top: 2rem; text-align: right; font-size: 1.8rem;">
+          forever yours, <br> <span style="font-family: cursive;">Dan 🌷</span> 
+        </p>
+      </div>
+      <button class="back-home" id="backFromLetter">🔙 back to valentine</button>                 
+    </div>
+
+  </div>
+
+  <!-- ========== JAVASCRIPT: PAGE SWITCHING ========== -->
+  <script>
+    (function() {
+      'use strict';
+
+      const page1 = document.getElementById('page1');
+      const page2 = document.getElementById('page2');
+      const page3 = document.getElementById('page3');
+      const page4 = document.getElementById('page4');
+
+      // helper: show only selected page, hide others
+      function showPage(targetPage) {
+        // hide all
+        page1.classList.add('hidden-page');
+        page1.classList.remove('visible-page');
+        page2.classList.add('hidden-page');
+        page2.classList.remove('visible-page');
+        page3.classList.add('hidden-page');
+        page3.classList.remove('visible-page');
+        page4.classList.add('hidden-page');
+        page4.classList.remove('visible-page');
+
+        // show target
+        targetPage.classList.remove('hidden-page');
+        targetPage.classList.add('visible-page');
+        
+        // gentle scroll to top
+        document.querySelector('.page').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      // big buttons from page1
+      document.getElementById('galleryBtn').addEventListener('click', () => showPage(page2));
+      document.getElementById('songBtn').addEventListener('click', () => showPage(page3));
+      document.getElementById('letterBtn').addEventListener('click', () => showPage(page4));
+
+      // all back buttons (return to page1 / valentine question)
+      document.getElementById('backFromGallery').addEventListener('click', () => showPage(page1));
+      document.getElementById('backFromSong').addEventListener('click', () => showPage(page1));
+      document.getElementById('backFromLetter').addEventListener('click', () => showPage(page1));
+
+      // initial state: page1 visible, others hidden (already set in HTML, but re-run to be safe)
+      showPage(page1);
+    })();
+  </script>
+</body>
+</html>
